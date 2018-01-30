@@ -1,0 +1,14 @@
+<div class="container"
+      fxLayout="column"
+      fxLayoutGap="10px">
+  <md-list fxFlex>
+    <md-list-item *ngFor="let prato of pratos">
+      <img md-list-avatar src={{prato.imagem}} alt={{prato.nome}}>
+      <h1 md-line>{{prato.nome}}</h1>
+      <p md-line>
+        <span>{{prato.descricao}}</span>
+      </p>
+    </md-list-item>
+  </md-list>
+
+</div>
