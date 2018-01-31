@@ -1,14 +1,24 @@
 <div class="container"
       fxLayout="column"
       fxLayoutGap="10px">
-  <md-list fxFlex>
-    <md-list-item *ngFor="let prato of pratos">
-      <img md-list-avatar src={{prato.imagem}} alt={{prato.nome}}>
-      <h1 md-line>{{prato.nome}}</h1>
-      <p md-line>
-        <span>{{prato.descricao}}</span>
-      </p>
-    </md-list-item>
-  </md-list>
+
+
+  <div fxFlex>
+    <div>
+      <h3>Menu</h3>
+      <hr>
+    </div>
+  </div>
+
+  <div  fxFlex>
+  <md-grid-list cols="2" rowHeigth="200px">
+    <md-grid-tile *ngFor="let prato of pratos">
+      <img height="200px" src={{prato.imagem}} alt={{prato.nome}}>
+      <md-grid-tile-footer>
+      <h1 md-line>{{prato.nome | uppercase}}</h1>
+      </md-grid-tile-footer>
+    </md-grid-tile>
+  </md-grid-list>
+  </div>
 
 </div>
