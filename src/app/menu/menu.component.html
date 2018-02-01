@@ -21,4 +21,23 @@
   </md-grid-list>
   </div>
 
+  <div fxFlex *ngIf="pratoSelecionado">
+    <md-card>
+      <md-card-header>
+        <md-card-title>
+          <h3>{{pratoSelecionado.nome | uppercase}}</h3>
+         </md-card-title>
+         
+      </md-card-header>
+      <img md-card-image src="{{pratoSelecionado.imagem}}" alt="{{pratoSelecionado.nome}}" />
+      <md-card-content>
+        <p>{{pratoSelecionado.descricao}}</p>
+      </md-card-content>
+      <md-card-actions>
+        <button md-button>Curtir</button>
+        <button md-button>Compartilhar</button>
+      </md-card-actions>
+    </md-card>
+  </div>
+
 </div>
