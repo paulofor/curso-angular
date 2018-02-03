@@ -9,7 +9,7 @@ import 'hammerjs';
 import { AppComponent } from './app.component';
 import { MenuComponent } from './menu/menu.component';
 import { PratodetalheComponent } from './pratodetalhe/pratodetalhe.component';
-
+import { DishService } from './services/dish.service';
 
 @NgModule({
   declarations: [
@@ -22,7 +22,9 @@ import { PratodetalheComponent } from './pratodetalhe/pratodetalhe.component';
     MaterialModule,
     FlexLayoutModule
   ],
-  providers: [],
+  providers: [
+    DishService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
