@@ -1,3 +1,6 @@
+import { Comentario } from "./comentario"
+
+
 export class Dish {
     nome: string;
     imagem: string;
@@ -5,4 +8,6 @@ export class Dish {
     preco: string;
     rotulo: string;
     categoria: string;
+    comentario: Comentario[];
 }
+
