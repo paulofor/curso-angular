@@ -13,15 +13,15 @@ export class MenuComponent implements OnInit {
 
   pratos: Dish[] = PRATOS;
 
-  pratoSelecionado: Dish = PRATOS[0];
+  pratoEscolhido: Dish = PRATOS[0];
 
   constructor() { }
 
   ngOnInit() {
   }
 
-  onSelect(prato: Dish) {
-    this.pratoSelecionado = prato;
+  onSelect(valor: Dish) {
+    this.pratoEscolhido = valor;
   }
 
 }
