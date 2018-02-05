@@ -10,12 +10,16 @@ import { AppComponent } from './app.component';
 import { MenuComponent } from './menu/menu.component';
 import { PratodetalheComponent } from './pratodetalhe/pratodetalhe.component';
 import { DishService } from './services/dish.service';
+import { HeaderComponent } from './header/header.component';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MenuComponent,
-    PratodetalheComponent
+    PratodetalheComponent,
+    HeaderComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
