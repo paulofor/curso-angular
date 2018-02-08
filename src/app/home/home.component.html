@@ -1,3 +1,36 @@
-<p>
-  home works!
-</p>
+<div class="container"
+     fxLayout="row"
+     fxLayout.sm="column"
+     fxLayout.xs="column"
+     fxLayoutAlign.gt-md="space-around center"
+     fxLayoutGap="10px">
+
+<md-card *ngIf="dish" fxFlex>
+  <md-card-header>
+    <div md-card-avatar></div>
+    <md-card-title>
+      <h3>{{dish.nome | uppercase}}</h3>
+    </md-card-title>
+  </md-card-header>
+  <img md-card-image src={{dish.imagem}} alt={{dish.nome}}>
+  <md-card-content>
+    <p>{{dish.descricao}}
+    </p>
+  </md-card-content>
+</md-card>
+
+<md-card *ngIf="promocao" fxFlex>
+  <md-card-header>
+    <div md-card-avatar></div>
+    <md-card-title>
+      <h3>{{promocao.nome | uppercase}}</h3>
+    </md-card-title>
+  </md-card-header>
+  <img md-card-image src={{promocao.imagem}} alt={{promocao.nome}}>
+  <md-card-content>
+    <p>{{promocao.descricao}}
+    </p>
+  </md-card-content>
+</md-card>
+
+</div>

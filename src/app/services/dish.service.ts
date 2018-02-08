@@ -11,5 +11,12 @@ export class DishService {
     return PRATOS;
   }
 
+  getPrato(pos: number) : Dish {
+    return PRATOS.filter((dish) => (dish.id===pos))[0];
+  }
+
+  getFeaturedPrato() : Dish {
+    return PRATOS.filter((dish) => (dish.featured))[0];
+  }
 }
   
