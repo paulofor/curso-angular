@@ -12,7 +12,7 @@
 
   <div  fxFlex>
   <md-grid-list cols="2" rowHeigth="200px">
-    <md-grid-tile *ngFor="let prato of pratos" (click)="onSelect(prato)">
+    <md-grid-tile *ngFor="let prato of pratos" [routerLink]="['/dishdetail',prato.id]">
       <img height="200px" src={{prato.imagem}} alt={{prato.nome}}>
       <md-grid-tile-footer>
       <h1 md-line>{{prato.nome | uppercase}}</h1>
@@ -22,5 +22,5 @@
   </div>
 
   
-  <app-pratodetalhe [pratoSelecionado]="pratoEscolhido"></app-pratodetalhe>
+
 </div>
