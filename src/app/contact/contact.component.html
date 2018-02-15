@@ -35,4 +35,43 @@
           </div>
         </div>
       </div>
+
+      <div fxFlex fxFlexOffset="20px" class="form-size" >
+        <h3>Envie sua mensagem</h3>
+        <p>{{ feedbackFormGroup.value | json  }} {{ feedbackFormGroup.status | json }} </p>
+        <form novalidate [formGroup]="feedbackFormGroup" (ngSubmit)="onSubmit()">
+          <p>
+          <md-input-container class="half-width">
+            <input mdInput formControlName="firstname" placeholder="Primeiro Nome" type="text" required/>
+          </md-input-container>
+          <md-input-container class="half-width">
+            <input mdInput formControlName="lastname" placeholder="Último Nome" type="text" required/>
+          </md-input-container>
+          <md-input-container class="half-width">
+            <input mdInput formControlName="telnum" placeholder="Telefone" type="tel" required/>
+          </md-input-container>
+          <md-input-container class="half-width">
+            <input mdInput formControlName="email" placeholder="Email" type="email" required/>
+          </md-input-container>
+          </p>
+          <table class="form-size" >
+            <td>
+              <md-slide-toggle formControlName="agree" >Posso entrar em contato ?</md-slide-toggle>
+            </td>
+            <td>
+              <md-select formControlName="contact" placeholder="Tipo de contato">
+                <md-option *ngFor="let tipo of listaTipo" [value]="tipo">
+                  {{ tipo }}
+                </md-option>
+              </md-select>
+            </td>
+          </table>
+          <p>
+             <md-input-container class="full-width">
+                <textarea mdInput formControlName="message" placeholder="Mensagem" rows=12 ></textarea>
+             </md-input-container>
+          </p>
+          <button type="submit" md-button class="background-primary text-floral-white">Enviar</button>
+        </form>
+      </div>
 </div>
