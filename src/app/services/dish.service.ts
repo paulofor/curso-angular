@@ -7,16 +7,16 @@ export class DishService {
 
   constructor() { }
 
-  getPratos(): Dish[] {
-    return PRATOS;
+  getPratos(): Promise<Dish[]> {
+    return Promise.resolve(PRATOS);
   }
 
-  getPrato(pos: number) : Dish {
-    return PRATOS.filter((dish) => (dish.id===pos))[0];
+  getPrato(pos: number) : Promise<Dish> {
+    return Promise.resolve(PRATOS.filter((dish) => (dish.id===pos))[0]);
   }
 
-  getFeaturedPrato() : Dish {
-    return PRATOS.filter((dish) => (dish.featured))[0];
+  getFeaturedPrato() : Promise<Dish> {
+    return Promise.resolve(PRATOS.filter((dish) => (dish.featured))[0]);
   }
 }
   

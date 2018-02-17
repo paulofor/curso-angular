@@ -23,7 +23,9 @@ export class PratodetalheComponent implements OnInit {
 
   ngOnInit() {
     let id = +this.route.snapshot.params['id'];
-    this.pratoSelecionado = this.dishservice.getPrato(id);
+
+    this.dishservice.getPrato(id).
+      then(dish => this.pratoSelecionado = dish)
   }
 
   goBack(): void {
