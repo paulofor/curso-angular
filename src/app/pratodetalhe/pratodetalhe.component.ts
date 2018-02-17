@@ -25,7 +25,7 @@ export class PratodetalheComponent implements OnInit {
     let id = +this.route.snapshot.params['id'];
 
     this.dishservice.getPrato(id).
-      then(dish => this.pratoSelecionado = dish)
+      subscribe(dish => this.pratoSelecionado = dish)
   }
 
   goBack(): void {
