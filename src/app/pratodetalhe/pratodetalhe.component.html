@@ -8,13 +8,12 @@
 
 
 
-  <div fxFlex >
+  <div fxFlex *ngIf="pratoSelecionado">
     <md-card>
       <md-card-header>
         <md-card-title>
           <h3>{{pratoSelecionado.nome | uppercase}}</h3>
          </md-card-title>
-         
       </md-card-header>
       <img md-card-image src="{{pratoSelecionado.imagem}}" alt="{{pratoSelecionado.nome}}" />
       <md-card-content>
@@ -27,5 +26,9 @@
       </md-card-actions>
     </md-card>
   </div>
-  
+  <div [hidden]="pratoSelecionado">
+      <md-spinner></md-spinner><h4>Carregando...</h4>
+  </div>
+
+
 </div>
