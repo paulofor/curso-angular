@@ -7,6 +7,9 @@ import { Location } from '@angular/common';
 
 import { DishService } from '../services/dish.service';
 
+
+import 'rxjs/add/operator/switchMap';
+
 @Component({
   selector: 'app-pratodetalhe',
   templateUrl: './pratodetalhe.component.html',
@@ -16,17 +19,31 @@ export class PratodetalheComponent implements OnInit {
 
  
   pratoSelecionado : Dish;
+  pratoIds: number[];  
+  prev: number;
+  next: number;
 
   constructor(private dishservice: DishService, 
       private route: ActivatedRoute,
       private location: Location) { }
 
   ngOnInit() {
-    let id = +this.route.snapshot.params['id'];
+    this.dishservice.getPratoIds().subscribe(ids => this.pratoIds = ids);
+    // Quando params altera tudo acontece.
+    this.route.params
+      .switchMap((params:Params) => this.dishservice.getPrato(+params['id']))   // Retorna um observable
+      .subscribe(dish => { this.pratoSelecionado = dish ; this.setPrevNext(dish.id); });   // O observable retornnndo e colococado no pratoSelecionado
 
-    this.dishservice.getPrato(id).
-      subscribe(dish => this.pratoSelecionado = dish)
+
   }
+
+  setPrevNext(idCorrente: number) {
+    let posicao = this.pratoIds.indexOf(idCorrente);
+    this.prev = this.pratoIds[(this.pratoIds.length + posicao - 1) % this.pratoIds.length ];
+    this.next = this.pratoIds[(this.pratoIds.length + posicao + 1) % this.pratoIds.length ];
+  }
+
+  
 
   goBack(): void {
     this.location.back();

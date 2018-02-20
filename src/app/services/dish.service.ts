@@ -23,7 +23,10 @@ export class DishService {
 
   getFeaturedPrato() : Observable<Dish> {
     return Observable.of(PRATOS.filter((dish) => (dish.featured))[0]).delay(2000);
-  
+  }
+
+  getPratoIds() : Observable<number[]> {
+    return Observable.of(PRATOS.map(prato => prato.id)).delay(2000);
   }
 }
   
