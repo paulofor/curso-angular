@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { Dish } from '../shared/dish';
 
 import { Params, ActivatedRoute } from '@angular/router';
@@ -22,17 +22,19 @@ export class PratodetalheComponent implements OnInit {
   pratoIds: number[];  
   prev: number;
   next: number;
+  mensagemErro: string;
 
   constructor(private dishservice: DishService, 
       private route: ActivatedRoute,
-      private location: Location) { }
+      private location: Location, @Inject('baseUrl') private baseUrl) { }
 
   ngOnInit() {
     this.dishservice.getPratoIds().subscribe(ids => this.pratoIds = ids);
     // Quando params altera tudo acontece.
     this.route.params
       .switchMap((params:Params) => this.dishservice.getPrato(+params['id']))   // Retorna um observable
-      .subscribe(dish => { this.pratoSelecionado = dish ; this.setPrevNext(dish.id); });   // O observable retornnndo e colococado no pratoSelecionado
+      .subscribe(dish => { this.pratoSelecionado = dish ; this.setPrevNext(dish.id); }
+                , errmes => this.mensagemErro = <any>errmes);   // O observable retornnndo e colococado no pratoSelecionado
 
 
   }

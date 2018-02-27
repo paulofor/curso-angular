@@ -8,22 +8,31 @@ import 'rxjs/add/operator/toPromise';
 import 'rxjs/add/operator/delay';
 import 'rxjs/add/observable/of';
 
+import { Http, Response } from '@angular/http';
+import { baseUrl } from '../shared/baseurl';
+import { ProcessHttpmsgService } from '../services/process-httpmsg.service';
+import { HttpClient, HttpHeaders } from '@angular/common/http'
+
 @Injectable()
 export class LeaderService {
 
-  constructor() { }
+  constructor(private http: Http,
+    private processHTTPMsgService: ProcessHttpmsgService) { }
 
   getLeaders(): Observable<Leader[]> {
-    return Observable.of(LEADERS).delay(2000);
+    return this.http.get(baseUrl + 'leaders')
+        .map(res => { return this.processHTTPMsgService.extractData(res); });
   }
 
   getLeader(pos: number) : Observable<Leader> {
-    return Observable.of(LEADERS.filter((item) => (item.id===pos))[0]).delay(2000);
+    return  this.http.get(baseUrl + 'leaders/' +pos)
+        .map(res => { return this.processHTTPMsgService.extraiDado(res); });
    
   }
 
   getFeaturedLeader() : Observable<Leader> {
-    return Observable.of(LEADERS.filter((item) => (item.featured))[0]).delay(2000);
+    return this.http.get(baseUrl + 'leaders?featured=true')
+        .map(res => { return this.processHTTPMsgService.extraiDado(res)[0]; });
   }
 
 }

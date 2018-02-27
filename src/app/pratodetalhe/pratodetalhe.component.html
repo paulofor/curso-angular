@@ -15,7 +15,7 @@
           <h3>{{pratoSelecionado.nome | uppercase}}</h3>
          </md-card-title>
       </md-card-header>
-      <img md-card-image src="{{pratoSelecionado.imagem}}" alt="{{pratoSelecionado.nome}}" />
+      <img md-card-image src="{{ baseUrl + pratoSelecionado.imagem}}"  alt="{{pratoSelecionado.nome}}" />
       <md-card-content>
         <p>{{pratoSelecionado.descricao}}</p>
       </md-card-content>
@@ -29,9 +29,12 @@
       </md-card-actions>
     </md-card>
   </div>
-  <div [hidden]="pratoSelecionado">
+  <div [hidden]="pratoSelecionado  || mensagemErro ">
       <md-spinner></md-spinner><h4>Carregando...</h4>
   </div>
-
+  <div *ngIf="mensagemErro">
+    <h2>Erro</h2>
+    <h4>{{mensagemErro}}</h4>
+  </div>
 
 </div>

@@ -24,6 +24,11 @@ import { LoginComponent } from './login/login.component';
 
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
+import { HttpModule } from '@angular/http';
+//import { HttpClientModule, HttpClient } from '@angular/common/http';
+
+import { baseUrl } from './shared/baseurl';
+import { ProcessHttpmsgService } from './services/process-httpmsg.service'
 
 @NgModule({
   declarations: [
@@ -44,12 +49,16 @@ import { ReactiveFormsModule } from '@angular/forms';
     FlexLayoutModule,
     AppRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpModule
   ],
   providers: [
     DishService,
     PromocaoService,
-    LeaderService
+    LeaderService,
+    { provide:'baseUrl' , useValue:baseUrl },
+    ProcessHttpmsgService,
+    HttpModule
   ],
   entryComponents: [
     LoginComponent
