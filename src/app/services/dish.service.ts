@@ -9,34 +9,30 @@ import 'rxjs/add/observable/of';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map'
 
-import { Http, Response } from '@angular/http';
+
 import { baseUrl } from '../shared/baseurl';
 import { ProcessHttpmsgService } from '../services/process-httpmsg.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http'
 
+import { RestangularModule, Restangular } from 'ngx-restangular';
 
 @Injectable()
 export class DishService {
 
-  constructor(private http: Http,
+  constructor(private restangular: Restangular,
             private processHTTPMsgService: ProcessHttpmsgService) { }
 
   getPratos(): Observable<Dish[]> {
-    return this.http.get(baseUrl + 'dishes')
-        .map(res => { return this.processHTTPMsgService.extractData(res); })
-        .catch(error=> { return this.processHTTPMsgService.handleErro(error); });
+    return this.restangular.all('dishes').getList();
   }
 
   getPrato(pos: number) : Observable<Dish> {
-    return  this.http.get(baseUrl + 'dishes/' +pos)
-        .map(res => { return this.processHTTPMsgService.extraiDado(res); })
-        .catch(error=> { return this.processHTTPMsgService.handleErro(error); });
+    return this.restangular.one('dishes',pos).get();
   }
 
   getFeaturedPrato() : Observable<Dish> {
-    return this.http.get(baseUrl + 'dishes?featured=true')
-        .map(res => { return this.processHTTPMsgService.extraiDado(res)[0]; })
-        .catch(error=> { return this.processHTTPMsgService.handleErro(error); });
+    return this.restangular.all('dishes').getList({featured:true})
+        .map(dishes => dishes[0]);
   }
 
   getPratoIds() : Observable<number[]> {

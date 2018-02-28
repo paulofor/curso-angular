@@ -30,6 +30,10 @@ import { HttpModule } from '@angular/http';
 import { baseUrl } from './shared/baseurl';
 import { ProcessHttpmsgService } from './services/process-httpmsg.service'
 
+import { RestangularModule, Restangular } from 'ngx-restangular';
+import { RestangularConfigFactory } from './shared/restConfig';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -50,7 +54,8 @@ import { ProcessHttpmsgService } from './services/process-httpmsg.service'
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpModule
+    HttpModule,
+    RestangularModule.forRoot(RestangularConfigFactory)
   ],
   providers: [
     DishService,
