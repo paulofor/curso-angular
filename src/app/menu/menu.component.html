@@ -12,7 +12,7 @@
 
   <div  fxFlex *ngIf="pratos">
   <md-grid-list cols="2" rowHeigth="200px">
-    <md-grid-tile *ngFor="let prato of pratos" [routerLink]="['/dishdetail',prato.id]">
+    <md-grid-tile *ngFor="let prato of pratos" [routerLink]="['/dishdetail',prato.id]" appHighlight>
       <img height="200px" src="{{ baseUrl + prato.imagem}}" alt={{prato.nome}}>
       <md-grid-tile-footer>
       <h1 md-line>{{prato.nome | uppercase}}</h1>
