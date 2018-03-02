@@ -12,15 +12,31 @@ import { DishService } from '../services/dish.service';
 import 'rxjs/add/operator/switchMap';
 
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { trigger, state, style, animate, transition } from '@angular/animations';
+
 
 @Component({
   selector: 'app-pratodetalhe',
   templateUrl: './pratodetalhe.component.html',
-  styleUrls: ['./pratodetalhe.component.scss']
+  styleUrls: ['./pratodetalhe.component.scss'],
+  animations: [
+    trigger('visibility',[
+        state('exibe',  style({
+          transform: 'scale(1.0)',
+          opacity: 1  
+        })), 
+        state('esconde', style({
+          transform: 'scale(0.5)',
+          opacity: 0
+        })),
+        transition('* => *', animate('0.5s ease-in-out'))
+    ])
+  ]
 })
 
 export class PratodetalheComponent implements OnInit {
 
+  visibility = 'exibe';
  
   pratoSelecionado : Dish;
   pratoWrk  = null;
@@ -59,8 +75,8 @@ export class PratodetalheComponent implements OnInit {
     this.dishservice.getPratoIds().subscribe(ids => this.pratoIds = ids);
     // Quando params altera tudo acontece.
     this.route.params
-      .switchMap((params:Params) => this.dishservice.getPrato(+params['id']))   // Retorna um observable
-      .subscribe(dish => { this.pratoSelecionado = dish ; this.pratoWrk = dish; this.setPrevNext(dish.id); }
+      .switchMap((params:Params) => {this.visibility = 'esconde'; return this.dishservice.getPrato(+params['id'])})   // Retorna um observable
+      .subscribe(dish => { this.pratoSelecionado = dish ; this.pratoWrk = dish; this.setPrevNext(dish.id); this.visibility = 'exibe'; }
                 , errmes => this.mensagemErro = <any>errmes);   // O observable retornnndo e colococado no pratoSelecionado
 
 
