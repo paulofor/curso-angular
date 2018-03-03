@@ -2,14 +2,14 @@
      fxLayout="column"
      fxLayoutGap="10px">
 
-     <div fxFlex>
+     <div fxFlex >
             <div>
                <h3>About Us</h3>
                <hr>
             </div>
      </div>
 
-      <div fxFlex>
+      <div fxFlex >
         <div fxLayout="column" fxLayout.gt-sm="row">
           <div fxFlex="70">
               <h2>Our History</h2>
@@ -54,7 +54,7 @@
       </div>
 
 
-        <div fxFlex>
+        <div fxFlex [@expand]>
           <h2>Corporate Leadership</h2>
           <md-list *ngIf="leaders">
             <md-list-item *ngFor="let leader of leaders">

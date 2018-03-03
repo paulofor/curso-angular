@@ -12,25 +12,19 @@ import { DishService } from '../services/dish.service';
 import 'rxjs/add/operator/switchMap';
 
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { trigger, state, style, animate, transition } from '@angular/animations';
+import { visibility, flyInOut, expand } from '../animations/app.animations';
 
 
 @Component({
   selector: 'app-pratodetalhe',
   templateUrl: './pratodetalhe.component.html',
   styleUrls: ['./pratodetalhe.component.scss'],
+  host: { 
+    '[@flyInOut]' : 'true',
+    'style' : 'display:block;'
+  },
   animations: [
-    trigger('visibility',[
-        state('exibe',  style({
-          transform: 'scale(1.0)',
-          opacity: 1  
-        })), 
-        state('esconde', style({
-          transform: 'scale(0.5)',
-          opacity: 0
-        })),
-        transition('* => *', animate('0.5s ease-in-out'))
-    ])
+    flyInOut(), visibility(), expand()
   ]
 })
 
